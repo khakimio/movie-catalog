@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import SearchInfo from "./components/SearchInfo";
+import Loader from "./components/Loader";
 import useDebounce from "./hooks/useDebounce";
 
 const API_KEY = process.env.REACT_APP_OMDB_API_KEY;
@@ -53,7 +54,7 @@ export default function App() {
       <Header onSearch={setSearchQuery} />
       <SearchInfo query={debouncedQuery} count={resultCount} />
       {isLoading ? (
-        "Loading..."
+        <Loader />
       ) : (
         <ul className="movies">
           {movies?.map((movie) => (
