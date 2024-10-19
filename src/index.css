@@ -1,3 +1,7 @@
+:root {
+  --color-primary: #6627ff;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,4 +9,77 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0 12px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0 14px;
+}
+
+.logo img {
+  width: 170px;
+}
+
+.search-info {
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+  padding: 12px 0;
+}
+
+.search-info__query {
+  margin-right: 8px;
+  text-decoration: underline;
+  font-weight: normal;
+}
+
+.search-info__count {
+  font-size: 0.8rem;
+  background-color: var(--color-primary);
+  padding: 6px 14px;
+  border-radius: 6px;
+  color: white;
+}
+
+.search-input {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+  border-color: var(--color-primary);
+}
+
+.search-input:focus-visible {
+  border-color: var(--color-primary);
+}
+
+.user-icon {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }

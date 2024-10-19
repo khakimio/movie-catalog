@@ -2,7 +2,7 @@ export default function Header({ onSearch }) {
   return (
     <header className="header">
       <a href="/" className="logo">
-        UPPERSETUP
+        <img src="/logo.png" alt="Logo" />
       </a>
       <input
         type="text"
@@ -10,7 +10,10 @@ export default function Header({ onSearch }) {
         onChange={(e) => onSearch(e.target.value)}
         className="search-input"
       />
-      <div className="user-icon">Your Name</div>
+      <div className="user-icon">
+        <img src="/user.svg" alt="User Icon" />
+        <span>Your Name</span>
+      </div>
     </header>
   );
 }
