@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import SearchInfo from "./components/SearchInfo";
 import Loader from "./components/Loader";
 import useDebounce from "./hooks/useDebounce";
+import MovieCard from "./components/MovieCard";
 
 const API_KEY = process.env.REACT_APP_OMDB_API_KEY;
 const BASE_URL = process.env.REACT_APP_OMDB_BASE_URL;
@@ -58,7 +59,9 @@ export default function App() {
       ) : (
         <ul className="movies">
           {movies?.map((movie) => (
-            <li key={movie.imdbID}>{JSON.stringify(movie)}</li>
+            <li key={movie.imdbID}>
+              <MovieCard movie={movie} />
+            </li>
           ))}
         </ul>
       )}
