@@ -1,5 +1,8 @@
 :root {
   --color-primary: #6627ff;
+  --color-secondary: #fcfcff;
+  --color-grey: #ddd;
+  --color-darken-grey: #999;
 }
 
 body {
@@ -64,7 +67,7 @@ ul {
 
 .search-input {
   padding: 8px 12px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-grey);
   border-radius: 4px;
   font-size: 1rem;
   outline: none;
@@ -94,10 +97,10 @@ ul {
 
 .movie-card {
   height: 100%;
-  background-color: #ffffff;
+  background-color: white;
   border-radius: 8px;
   overflow: hidden;
-  border: 1px solid #6627ff;
+  border: 1px solid var(--color-primary);
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
@@ -135,7 +138,6 @@ movie-card__info dt {
 
 movie-card__info dd {
   margin: 0 0 8px 0;
-  color: #555;
 }
 
 .pagination {
@@ -147,8 +149,8 @@ movie-card__info dd {
 .pagination__btn {
   margin: 10px 0;
   padding: 6px 12px;
-  border: 1px solid #ddd;
-  background-color: #FCFCFF;
+  border: 1px solid var(--color-grey);
+  background-color: var(--color-secondary);
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
@@ -171,7 +173,7 @@ movie-card__info dd {
 }
 
 .pagination--dots {
-  color: #999;
+  color: var(--color-darken-grey);
   cursor: default
 }
 
