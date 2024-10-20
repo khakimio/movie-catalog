@@ -21,19 +21,10 @@ export default function MovieCard({ movie }) {
       </div>
 
       <section className="movie-card__info">
-        <dl>
-          <dt>Name:</dt>
-          <dd>{Title}</dd>
-
-          <dt>Year:</dt>
-          <dd>{Year}</dd>
-
-          <dt>imdbID:</dt>
-          <dd>{imdbID}</dd>
-
-          <dt>Type:</dt>
-          <dd>{Type}</dd>
-        </dl>
+        <p>Name: {Title}</p>
+        <p>Year: {Year}</p>
+        <p>imdbID: {imdbID}</p>
+        <p>Type: {Type}</p>
       </section>
     </article>
   );
