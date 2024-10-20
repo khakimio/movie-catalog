@@ -9,13 +9,15 @@ export default function MovieCard({ movie }) {
             src={"placeholder.png"}
             className="movie-card__img movie-card--placeholder"
             alt={Title}
+            placeholder={Title}
           />
         ) : (
           <img
             src={Poster}
-            alt={Title}
             loading="lazy"
             className="movie-card__img"
+            alt={Title}
+            placeholder={Title}
           />
         )}
       </div>
