@@ -8,7 +8,7 @@ export default function Header({ onSearch }) {
         <input
           type="text"
           placeholder="Search movies..."
-          onChange={(e) => onSearch(e.target.value)}
+          onChange={(e) => onSearch(e.target.value.trim())}
           className="search__input"
         />
         <svg
