@@ -36,22 +36,25 @@ export default function Pagination({ currentPage, totalPages, onPageChange }) {
       <button
         disabled={currentPage === 1}
         onClick={() => onPageChange(currentPage - 1)}
+        className="pagination__btn pagination__btn--prev"
       >
         Previous
       </button>
       {paginationRange.map((page, index) => {
         if (page === "...") {
           return (
-            <span key={index} className="pagination-dots">
+            <button key={index} className="pagination__btn pagination--dots">
               ...
-            </span>
+            </button>
           );
         }
 
         return (
           <button
             key={index}
-            className={page === currentPage ? "active" : ""}
+            className={`pagination__btn  ${
+              page === currentPage && "pagination__btn--active"
+            }`}
             onClick={() => onPageChange(page)}
           >
             {page}
@@ -61,6 +64,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }) {
       <button
         disabled={currentPage === totalPages}
         onClick={() => onPageChange(currentPage + 1)}
+        className="pagination__btn pagination__btn--next"
       >
         Next
       </button>

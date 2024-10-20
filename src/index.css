@@ -26,6 +26,7 @@ ul {
 .container {
   max-width: 1024px;
   margin: 0 auto;
+  margin-bottom: 30px;
   padding: 0 12px;
 }
 
@@ -135,4 +136,41 @@ movie-card__info dt {
 movie-card__info dd {
   margin: 0 0 8px 0;
   color: #555;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination__btn {
+  margin: 10px 0;
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  background-color: #FCFCFF;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination__btn--active {
+  background-color: #F3F5F9;
+}
+
+.pagination__btn--next {
+  border-radius: 0 5px 5px 0;
+}
+
+.pagination__btn--prev {
+  border-radius: 5px 0 0 5px;
+}
+
+.pagination__btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.pagination--dots {
+  color: #999;
+  cursor: default
 }
