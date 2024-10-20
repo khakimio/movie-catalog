@@ -12,21 +12,23 @@ const BASE_URL = process.env.REACT_APP_OMDB_BASE_URL;
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [resultCount, setResultCount] = useState(null);
-
+  const [resultCount, setResultCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-
   const [isLoading, setIsLoading] = useState(false);
+  const [hasSearched, setHasSearched] = useState(false);
+
   const debouncedQuery = useDebounce(searchQuery, 800);
 
   useEffect(() => {
-    fetchMovies(debouncedQuery, 1);
+    if (debouncedQuery.trim()) {
+      fetchMovies(debouncedQuery, 1);
+      setHasSearched(true);
+    }
   }, [debouncedQuery]);
 
   const fetchMovies = async (query, page) => {
     setIsLoading(true);
-
     try {
       const response = await fetch(
         `${BASE_URL}?apikey=${API_KEY}&s=${query}&page=${page}`
@@ -35,7 +37,7 @@ export default function App() {
 
       if (data.Response === "True") {
         setMovies(data.Search);
-        setResultCount(data.totalResults);
+        setResultCount(Number(data.totalResults));
         setTotalPages(Math.ceil(data.totalResults / 10));
         setCurrentPage(page);
       } else {
@@ -60,28 +62,52 @@ export default function App() {
     fetchMovies(searchQuery, page);
   };
 
-  return (
-    <div className="container">
-      <Header onSearch={setSearchQuery} />
-      <SearchInfo query={debouncedQuery} count={resultCount} />
-      {isLoading ? (
-        <Loader />
-      ) : (
+  const renderContent = () => {
+    if (isLoading) {
+      return <Loader />;
+    }
+
+    if (!searchQuery.trim()) {
+      return (
+        <p className="movies-empty">
+          Please enter a search term to find movies.
+        </p>
+      );
+    }
+
+    if (hasSearched && debouncedQuery && movies.length === 0) {
+      return (
+        <p className="movies-empty">
+          No movies found. Please try a different search.
+        </p>
+      );
+    }
+
+    return (
+      <>
+        <SearchInfo query={debouncedQuery} count={resultCount} />
         <ul className="movies">
-          {movies?.map((movie) => (
+          {movies.map((movie) => (
             <li key={movie.imdbID}>
               <MovieCard movie={movie} />
             </li>
           ))}
         </ul>
-      )}
-      {resultCount > 0 && (
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
-        />
-      )}
+        {resultCount > 0 && (
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
+        )}
+      </>
+    );
+  };
+
+  return (
+    <div className="container">
+      <Header onSearch={setSearchQuery} />
+      {renderContent()}
     </div>
   );
 }
